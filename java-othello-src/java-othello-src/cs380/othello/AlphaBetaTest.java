@@ -1,24 +1,19 @@
 package cs380.othello;
 
-/**
- *
- * @author santi
- */
-public class Test {
-    
-    
-    public static void main(String args[]) {
+public class AlphaBetaTest {
+	
+public static void main(String args[]) {
     	
     	double wins = 0;
     	double draws = 0;
-    	int plays = 100;
+    	int plays = 1000;
     	
     	for(int x = 0; x <= plays; x++) {
     		// Create the game state with the initial position for an 8x8 board:
     		OthelloState state = new OthelloState(8);
     		
-    		OthelloPlayer players[] = {new OthelloMinMaxNessel(4, state.PLAYER1), new OthelloRandomPlayer()}; int isPlayer = state.PLAYER1;
-    		//OthelloPlayer players[] = {new OthelloRandomPlayer(), new OthelloMinMaxNessel(4, state.PLAYER2)}; int isPlayer = state.PLAYER2;
+    		OthelloPlayer players[] = {new OthelloAlphaBetaNessel(7, state.PLAYER1), new OthelloRandomPlayer()}; int isPlayer = state.PLAYER1;
+    		//OthelloPlayer players[] = {new OthelloRandomPlayer(), new OthelloAlphaBetaNessel(6, state.PLAYER2)}; int isPlayer = state.PLAYER2;
         
     		do{
     			// Display the current state in the console:
@@ -46,8 +41,7 @@ public class Test {
     	
     	double winPercent = (wins/plays)*100;
     	double drawPercent = (draws/plays)*100;
-    	System.out.println("MinMax won: " + winPercent + "%");
+    	System.out.println("AlphaBeta won: " + winPercent + "%");
     	System.out.println("There was a draw: " + drawPercent + "%");
     }    
-    
 }
