@@ -14,7 +14,7 @@ public class OthelloMinMaxNessel extends OthelloPlayer {
       
     public OthelloMove getMove(OthelloState state) {
         
-    	if(playerNumber == state.PLAYER1) {
+    	if(playerNumber == OthelloState.PLAYER1) {
         	return maxMove(state);
     	}
     	
