@@ -1,17 +1,16 @@
 package cs380.othello;
 
-public class AlphaBetaTest {
-	
-public static void main(String args[]) {
-    	
+public class MonteCarloTest {
+
+	public static void main(String[] args) {
 		final long startTime = System.currentTimeMillis();
-	
+		
 		int PLAYER1 = OthelloState.PLAYER1;
 		int PLAYER2 = OthelloState.PLAYER2;
 	
     	double wins = 0;
     	double draws = 0;
-    	int plays = 10;
+    	int plays = 1;
     	
     	//play some large amount of games set above
     	for(int x = 1; x <= plays; x++) {
@@ -19,7 +18,7 @@ public static void main(String args[]) {
     		OthelloState state = new OthelloState(8);
     		
     		//OthelloPlayer players[] = {new OthelloAlphaBetaNessel(5, PLAYER1), new OthelloRandomPlayer()}; int isPlayer = PLAYER1;
-    		OthelloPlayer players[] = {new OthelloRandomPlayer(), new OthelloAlphaBetaNessel(5, PLAYER2)}; int isPlayer = PLAYER2;
+    		OthelloPlayer players[] = {new OthelloRandomPlayer(), new OthelloMonteCarloNessel(PLAYER2, 50000)}; int isPlayer = PLAYER2;
         
     		do{
     			// Display the current state in the console:
@@ -53,7 +52,9 @@ public static void main(String args[]) {
     	//figure out win percentage and draw percentage
     	double winPercent = (wins/plays)*100;
     	double drawPercent = (draws/plays)*100;
-    	System.out.println("AlphaBeta won: " + winPercent + "%");
+    	System.out.println("MonteCarlo won: " + winPercent + "%");
     	System.out.println("There was a draw: " + drawPercent + "%");
-    }    
+
+	}
+
 }
