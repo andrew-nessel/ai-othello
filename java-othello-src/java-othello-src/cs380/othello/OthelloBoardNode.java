@@ -1,10 +1,13 @@
 package cs380.othello;
 
+import java.util.List;
+
 public class OthelloBoardNode {
 	
 	private OthelloBoardNode parent;
-	private OthelloBoardNode child;
-	private OthelloMove myMove;
+	private List<OthelloBoardNode> children;
+	private OthelloMove move;
+	private OthelloState state;
 	private int scoreTotal;
 	private int timesVisited;
 	private boolean isRoot;
@@ -15,11 +18,11 @@ public class OthelloBoardNode {
 		scoreTotal = 0;
 	}
 	
-	public OthelloBoardNode(boolean root, OthelloBoardNode newParent, OthelloBoardNode newChild, OthelloMove move) {
+	public OthelloBoardNode(boolean root, OthelloBoardNode parent, OthelloBoardNode child, OthelloState state, OthelloMove move) {
 		isRoot = root;
-		parent = newParent;
-		child = newChild;
-		myMove = move;
+		this.parent = parent;
+		this.state = state;
+		this.move = move;
 		timesVisited = 0;
 		scoreTotal = 0;
 	}
@@ -28,28 +31,36 @@ public class OthelloBoardNode {
 		return isRoot;
 	}
 	
+	public OthelloState getState() {
+		return state;
+	}
+	
+	public void setState(OthelloState state) {
+		this.state = state;
+	}
+	
 	public OthelloMove getMove() {
-		return myMove;
+		return move;
 	}
 	
 	public void setMove(OthelloMove move) {
-		myMove = move;
+		this.move = move;
 	}
 	
 	public OthelloBoardNode getParent() {
 		return parent;
 	}
 	
-	public void setParent(OthelloBoardNode newParent) {
-		parent = newParent;
+	public void setParent(OthelloBoardNode parent) {
+		this.parent = parent;
 	}
 	
-	public OthelloBoardNode getChild() {
-		return child;
+	public List<OthelloBoardNode> getChildren() {
+		return children;
 	}
 	
-	public void setChild(OthelloBoardNode newChild) {
-		child = newChild;
+	public void addChild(OthelloBoardNode child) {
+		children.add(child);
 	}
 	
 	public int getScore() {

@@ -9,16 +9,21 @@ public class Test {
     
     public static void main(String args[]) {
     	
+    	final long startTime = System.currentTimeMillis();
+    	
+    	int PLAYER1 = OthelloState.PLAYER1;
+    	int PLAYER2 = OthelloState.PLAYER2;
+    	
     	double wins = 0;
     	double draws = 0;
     	int plays = 100;
     	
-    	for(int x = 0; x <= plays; x++) {
+    	for(int x = 1; x <= plays; x++) {
     		// Create the game state with the initial position for an 8x8 board:
     		OthelloState state = new OthelloState(8);
     		
-    		OthelloPlayer players[] = {new OthelloMinMaxNessel(4, state.PLAYER1), new OthelloRandomPlayer()}; int isPlayer = state.PLAYER1;
-    		//OthelloPlayer players[] = {new OthelloRandomPlayer(), new OthelloMinMaxNessel(4, state.PLAYER2)}; int isPlayer = state.PLAYER2;
+    		OthelloPlayer players[] = {new OthelloMinMaxNessel(4, PLAYER1), new OthelloRandomPlayer()}; int isPlayer = PLAYER1;
+    		//OthelloPlayer players[] = {new OthelloRandomPlayer(), new OthelloMinMaxNessel(4, PLAYER2)}; int isPlayer = PLAYER2;
         
     		do{
     			// Display the current state in the console:
@@ -35,14 +40,18 @@ public class Test {
     		System.out.println("\nFinal state with score: " + state.score());
     		System.out.println(state);
     		
-    		if((state.score()>0) && (isPlayer == state.PLAYER1)) {
+    		if((state.score()>0) && (isPlayer == PLAYER1)) {
     			wins++;
-    		}else if((state.score()<0) && (isPlayer == state.PLAYER2)){
+    		}else if((state.score()<0) && (isPlayer == PLAYER2)){
     			wins++;
     		}else if(state.score() == 0) {
     			draws++;
     		}
     	}
+    	
+    	final long endTime = System.currentTimeMillis();
+    	
+    	System.out.println("Total execution time: " + (endTime - startTime) / 1000);
     	
     	double winPercent = (wins/plays)*100;
     	double drawPercent = (draws/plays)*100;
